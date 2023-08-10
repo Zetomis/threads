@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import GeneralProvider from "@/components/GeneralProvider";
 import { ReactNode } from "react";
 
