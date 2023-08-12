@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 .container {
-    @apply grid gap-x-4;
+    @apply grid gap-x-8;
     grid-template-columns: 1fr 3fr 1fr;
+}
+
+/* button */
+.button {
+    @apply px-4 py-2 rounded cursor-pointer font-semibold disabled:opacity-75 disabled:cursor-not-allowed;
+}
+.button_default {
+    @apply button bg-slate-100 text-slate-950;
+}
+
+/* input */
+.input {
+    @apply px-4 py-2 bg-transparent border border-slate-100 rounded;
 }

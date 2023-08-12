@@ -16,4 +16,45 @@ model User {
   name     String
   password String?
   image    String?
+
+  post        Post[]
+  comments    Comment[]
+  subComments SubComment[]
+}
+
+model Post {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  userId  String @db.ObjectId
+  content String
+
+  createdAt DateTime  @default(now())
+  likes     String[]  @db.ObjectId
+  comments  Comment[]
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  postId    String   @db.ObjectId
+  createdAt DateTime @default(now())
+
+  content     String
+  subComments SubComment[]
+
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
+}
+
+model SubComment {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String @db.ObjectId
+  commentId String @db.ObjectId
+
+  createdAt DateTime @default(now())
+  content   String
+
+  user    User    @relation(fields: [userId], references: [id])
+  comment Comment @relation(fields: [commentId], references: [id])
 }
